@@ -25,7 +25,7 @@ let noticeTemplate = ejs.compile(fs.readFileSync(path.resolve(process.cwd(), 'te
 let sendTemplate = ejs.compile(fs.readFileSync(path.resolve(process.cwd(), 'template', templateName, 'send.ejs'), 'utf8'));
 // 提醒站长
 exports.notice = (comment) => {
-    let emailSubject = '来自「' + process.env.SITE_NAME + '」的新评论';
+    let emailSubject = '来自「' + process.env.SITE_NAME + '」的新帖子';
     let emailContent =  noticeTemplate({
                             siteName: process.env.SITE_NAME,
                             siteUrl: process.env.SITE_URL,
@@ -45,7 +45,7 @@ exports.notice = (comment) => {
         if (error) {
             return console.log(error);
         }
-        console.log("收到一条评论, 已提醒站长");
+        console.log("有一条新帖子, 已提醒站长");
     });
 }
 // 发送邮件通知他人
